@@ -26,6 +26,23 @@ describe('Testing unit 1', () => {
     })
   })
 
+  describe('POST /', () => {
+    it('it should have message OK with POST', done => {
+      chai
+        .request(server)
+        .post('/')
+        .set('Authorization', 'WHATTTTT')
+        .send({
+          data: 'OK',
+        })
+        .end((e, res) => {
+          res.should.have.status(200)
+          res.body.should.have.property('message').eql('OK with POST')
+          done()
+        })
+    })
+  })
+  
   after(done => {
     // Do something here after test
     done()
